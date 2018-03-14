@@ -27,7 +27,7 @@ export class BlogSectionComponent implements OnInit, OnChanges {
 
   addBlog(blog: Blog) {
     blog.author = this.filter;
-    this.blogService.addBlog(blog);
+    this.blogService.addBlog(blog).subscribe((res) => console.log('res', res);
   }
 
   deleteBlog(blog: Blog) {

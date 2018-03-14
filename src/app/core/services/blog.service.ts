@@ -25,7 +25,8 @@ export class BlogService {
   }
 
   addBlog(blog){
-    console.log('adding', blog);
+    console.log('adding3', blog);
+    return this.http.post<any>(this._baseUrl + 'blogs', blog);
   }
 
   deleteBlog(blog){
