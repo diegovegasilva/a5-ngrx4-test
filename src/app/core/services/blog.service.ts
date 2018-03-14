@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-
 @Injectable()
-export class AuthorService {
+export class BlogService {
+
   private _baseUrl = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
 
-  loadAllAuthors() {
-    return this.http.get(this._baseUrl + 'authors');
+  loadBlogs() {
+    return this.http.get(this._baseUrl + 'blogs');
   }
+
 }

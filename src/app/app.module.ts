@@ -9,13 +9,17 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AuthorSectionComponent } from './author-section/author-section.component';
+import { BlogSectionComponent } from './blog-section/blog-section.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AuthorSectionComponent
+    AuthorSectionComponent,
+    BlogSectionComponent,
+    BlogListComponent
   ],
   imports: [
     BrowserModule,
