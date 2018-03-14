@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -9,7 +9,7 @@ import {BlogService} from '../core/services/blog.service';
   templateUrl: './blog-section.component.html',
   styleUrls: ['./blog-section.component.css']
 })
-export class BlogSectionComponent implements OnInit {
+export class BlogSectionComponent implements OnInit, OnChanges {
   @Input() filter = 'All';
 
   blogs$
@@ -17,8 +17,13 @@ export class BlogSectionComponent implements OnInit {
   constructor(private blogService: BlogService ) { }
 
   ngOnInit() {
-    this.blogs$ = this.blogService.loadBlogs();
+    
   }
+
+  ngOnChanges(){
+    this.blogs$ = this.blogService.loadFilteredBlog(this.filter);
+  }
+  
 
 
 
