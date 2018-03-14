@@ -1,1 +1,6 @@
-<blog-list (deleteBlogEvent)="deleteBlog($event)" [blogs]="blogs$ | async"></blog-list>
+<blog-list (deleteBlogEvent)="deleteBlog($event)"
+           [blogs]="blogs$ | async">
+</blog-list>
+<add-blog [filter]="filter"
+          (addBlogEvent)="addBlog($event)">
+</add-blog>

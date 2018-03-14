@@ -24,4 +24,12 @@ export class BlogService {
       });
   }
 
+  addBlog(blog){
+    console.log('adding', blog);
+  }
+
+  deleteBlog(blog){
+    console.log('deleting', blog);
+  }
+
 }
