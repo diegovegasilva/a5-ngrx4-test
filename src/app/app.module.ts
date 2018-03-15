@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { blogReducer } from './state/reducers/blog.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -29,7 +33,9 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot({blog: blogReducer}),
+    StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
   providers: [],
   bootstrap: [AppComponent]
