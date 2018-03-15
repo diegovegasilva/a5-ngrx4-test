@@ -22,16 +22,20 @@ export class BlogSectionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    this.getBlogs();  
+  }
+
+  getBlogs(){
     this.blogs$ = this.blogService.loadFilteredBlog(this.filter);
   }
 
   addBlog(blog: Blog) {
     blog.author = this.filter;
-    this.blogService.addBlog(blog).subscribe((res) => console.log('res', res);
+    this.blogService.addBlog(blog).subscribe((res) => this.getBlogs());
   }
 
   deleteBlog(blog: Blog) {
-    this.blogService.deleteBlog(blog);
+    this.blogService.deleteBlog(blog).subscribe((res) => this.getBlogs());
   }
 
 
