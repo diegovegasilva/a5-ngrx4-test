@@ -8,13 +8,13 @@ import {
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import { filter } from 'rxjs/operators';
 
 import { BlogService } from '../core/services/blog.service';
 import { Blog } from '../shared/models/blog.model';
 
 import { Store } from '@ngrx/store';
 import { ADD_BLOG, DELETE_BLOG } from '../state/actions/blog.actions';
-
 
 @Component({
   selector: 'blog-section',
@@ -28,23 +28,31 @@ export class BlogSectionComponent implements OnInit, OnChanges {
 
   constructor(private blogService: BlogService, private store: Store<any>) {}
 
-  ngOnInit() {}
-
-  ngOnChanges() {
-    this.getBlogs();
+  ngOnInit() {
+    this.blogService.loadBlogs();
+    this.blogs$ = this.store.select('blog');
   }
 
-  getBlogs() {
+  ngOnChanges() {
+    // this.getBlogs();
+  }
+
+  filterBlogs() {
     this.blogs$ = this.blogService.loadFilteredBlog(this.filter);
   }
 
   addBlog(blog: Blog) {
     blog.author = this.filter;
-    this.store.dispatch({ type: ADD_BLOG, payload: blog });
-    this.blogService.addBlog(blog).subscribe(res => this.getBlogs());
+    this.blogService.addBlog(blog);
   }
 
   deleteBlog(blog: Blog) {
-    this.blogService.deleteBlog(blog).subscribe(res => this.getBlogs());
+    this.blogService.deleteBlog(blog);
+  }
+
+  showStore() {
+    this.store.select('blog').subscribe(res => {
+      console.log('store', res);
+    });
   }
 }
