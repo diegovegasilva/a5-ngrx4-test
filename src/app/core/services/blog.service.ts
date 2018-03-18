@@ -6,6 +6,7 @@ import 'rxjs/add/operator/filter';
 
 import { Store } from '@ngrx/store';
 import { ADD_BLOG, DELETE_BLOG } from '../../state/actions/blog.actions';
+import * as _ from 'lodash';
 
 @Injectable()
 export class BlogService {
@@ -20,10 +21,9 @@ export class BlogService {
   }
 
   loadFilteredBlog(filter): any {
-    return this.http.get<any>(this._baseUrl + 'blogs').map(blogs => {
-      const filteredBlogs =
-        filter === 'All' ? blogs : blogs.filter(blog => blog.author === filter);
-      return filteredBlogs;
+    return this.store.select('blog').map(blogs => {
+      blogs = filter === 'All' ? blogs : _.filter(blogs, blog => blog.author === filter);
+      return blogs;
     });
   }
 
@@ -34,6 +34,8 @@ export class BlogService {
   }
 
   deleteBlog(blog) {
-    return this.http.delete<any>(this._baseUrl + 'blogs/' + blog.id);
+    return this.http.delete<any>(this._baseUrl + 'blogs/' + blog.id).subscribe(res => {
+      this.store.dispatch({ type: DELETE_BLOG, payload:  blog.id });
+    });
   }
 }

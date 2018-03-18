@@ -30,14 +30,9 @@ export class BlogSectionComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.blogService.loadBlogs();
-    this.blogs$ = this.store.select('blog');
   }
 
   ngOnChanges() {
-    // this.getBlogs();
-  }
-
-  filterBlogs() {
     this.blogs$ = this.blogService.loadFilteredBlog(this.filter);
   }
 

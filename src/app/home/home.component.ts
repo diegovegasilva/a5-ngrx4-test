@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   }
   updateFilter(filter) {
     this.filter = filter;
-    console.log(filter);
   }
 
 }
