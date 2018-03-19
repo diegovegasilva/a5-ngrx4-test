@@ -1,5 +1,12 @@
-import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { AuthorService } from '../core/services/author.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'author-section',
@@ -10,21 +17,20 @@ export class AuthorSectionComponent implements OnInit, OnChanges {
   @Output() updateFilter = new EventEmitter();
   authors$;
 
-  constructor(private service: AuthorService) { }
+  constructor(private authorService: AuthorService, private store: Store<any>) {}
 
   ngOnInit() {
-    this.authors$ = this.service.loadAllAuthors();
+    this.authorService.loadAllAuthors();
+    this.authors$ = this.store.select('author');
   }
 
   ngOnChanges() {
     console.log('author section Onchanges');
   }
 
-
   onSelectAuthor(author: string) {
     this.updateFilter.emit(author);
     const filter = author === 'All' ? author : 'Other';
     // this.store.dispatch({ type: '', payload: { type: filter, value: author } });
   }
-
 }

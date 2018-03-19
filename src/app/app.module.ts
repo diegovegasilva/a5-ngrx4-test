@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { blogReducer } from './state/reducers/blog.reducer';
+import { authorReducer } from './state/reducers/author.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,7 +18,6 @@ import { AuthorSectionComponent } from './author-section/author-section.componen
 import { BlogSectionComponent } from './blog-section/blog-section.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
-
 
 @NgModule({
   declarations: [
@@ -34,10 +34,10 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     HttpClientModule,
     FormsModule,
     CoreModule,
-    StoreModule.forRoot({blog: blogReducer}),
-    StoreDevtoolsModule.instrument({maxAge: 25}),
+    StoreModule.forRoot({ blog: blogReducer, author: authorReducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
