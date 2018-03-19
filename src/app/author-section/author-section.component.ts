@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 import { AuthorService } from '../core/services/author.service';
 
 @Component({
@@ -6,9 +6,9 @@ import { AuthorService } from '../core/services/author.service';
   templateUrl: './author-section.component.html',
   styleUrls: ['./author-section.component.css']
 })
-export class AuthorSectionComponent implements OnInit {
+export class AuthorSectionComponent implements OnInit, OnChanges {
   @Output() updateFilter = new EventEmitter();
-  authors$
+  authors$;
 
   constructor(private service: AuthorService) { }
 
@@ -16,11 +16,15 @@ export class AuthorSectionComponent implements OnInit {
     this.authors$ = this.service.loadAllAuthors();
   }
 
+  ngOnChanges() {
+    console.log('author section Onchanges');
+  }
+
 
   onSelectAuthor(author: string) {
     this.updateFilter.emit(author);
     const filter = author === 'All' ? author : 'Other';
-    //this.store.dispatch({ type: '', payload: { type: filter, value: author } });
+    // this.store.dispatch({ type: '', payload: { type: filter, value: author } });
   }
 
 }
