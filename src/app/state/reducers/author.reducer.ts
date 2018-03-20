@@ -1,9 +1,12 @@
-import { ADD_AUTHOR} from '../actions/author.actions';
+import * as fromActions from '../actions/author.actions';
 import * as _ from 'lodash';
 
-export const authorReducer = (state: any = [], action) => {
+export const authorReducer = (
+  state: any = [],
+  action: fromActions.Actions
+) => {
   switch (action.type) {
-    case ADD_AUTHOR:
+    case fromActions.ADD_AUTHOR:
       return state.concat(action.payload);
     default:
       return state;
