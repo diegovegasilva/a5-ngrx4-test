@@ -1,11 +1,13 @@
-import { ADD_BLOG, DELETE_BLOG } from '../actions/blog.actions';
+import * as blogActions from '../actions/blog.actions';
 import * as _ from 'lodash';
 
-export const blogReducer = (state: any = [], action) => {
+export const blogReducer = (state: any = [], action: blogActions.Actions) => {
   switch (action.type) {
-    case ADD_BLOG:
+    case blogActions.LOAD_BLOGS:
       return state.concat(action.payload);
-    case DELETE_BLOG:
+    case blogActions.ADD_BLOG:
+      return state.concat(action.payload);
+    case blogActions.DELETE_BLOG:
       const newState = _.filter(state, st => st.id !== action.payload);
       return newState;
     default:
