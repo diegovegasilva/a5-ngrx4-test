@@ -10,7 +10,6 @@ import * as _ from 'lodash';
 
 import { Blog } from '../../shared/models/blog.model';
 
-
 @Injectable()
 export class BlogService {
   private _baseUrl = 'http://localhost:3000/';
@@ -25,20 +24,24 @@ export class BlogService {
 
   loadFilteredBlog(filter): any {
     return this.store.select('blog').map(blogs => {
-      blogs = filter === 'All' ? blogs : _.filter(blogs, blog => blog.author === filter);
+      blogs = filter === 'All' ? blogs.blogs : _.filter(blogs.blogs, b => b.author === filter);
       return blogs;
     });
   }
 
   addBlog(blog) {
-    return this.http.post<any>(this._baseUrl + 'blogs', blog).subscribe((res: Blog) => {
-      this.store.dispatch(new blogActions.AddBlog(res));
-    });
+    return this.http
+      .post<any>(this._baseUrl + 'blogs', blog)
+      .subscribe((res: Blog) => {
+        this.store.dispatch(new blogActions.AddBlog(res));
+      });
   }
 
   deleteBlog(blog) {
-    return this.http.delete<any>(this._baseUrl + 'blogs/' + blog.id).subscribe(res => {
-      this.store.dispatch(new blogActions.DeleteBlog(blog.id));
-    });
+    return this.http
+      .delete<any>(this._baseUrl + 'blogs/' + blog.id)
+      .subscribe(res => {
+        this.store.dispatch(new blogActions.DeleteBlog(blog.id));
+      });
   }
 }

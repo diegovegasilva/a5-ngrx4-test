@@ -1,12 +1,25 @@
+import { Blog } from '../../shared/models/blog.model';
 import * as blogActions from '../actions/blog.actions';
 import * as _ from 'lodash';
 
-export const blogReducer = (state: any = [], action: blogActions.Actions) => {
+export interface State {
+  blogs: Blog[];
+}
+
+const initialState: State = {
+  blogs: []
+};
+
+export const blogReducer = (state = initialState, action: blogActions.Actions) => {
   switch (action.type) {
     case blogActions.LOAD_BLOGS:
-      return state.concat(action.payload);
+        return Object.assign({}, state, {
+          blogs: action.payload
+        });
     case blogActions.ADD_BLOG:
-      return state.concat(action.payload);
+        return Object.assign({}, state, {
+          blogs: [...state.blogs, action.payload]
+        });
     case blogActions.DELETE_BLOG:
       const newState = _.filter(state, st => st.id !== action.payload);
       return newState;
