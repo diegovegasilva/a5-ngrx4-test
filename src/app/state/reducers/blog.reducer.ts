@@ -27,3 +27,6 @@ export const blogReducer = (state = initialState, action: blogActions.Actions) =
       return state;
   }
 };
+
+// slices of state
+export const getBlogs = (state: State) => state.blogs;
