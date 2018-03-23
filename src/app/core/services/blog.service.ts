@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 import { Store } from '@ngrx/store';
+import * as rootSelector from '../../state/main.reducer';
 import * as blogActions from '../../state/actions/blog.actions';
 import * as _ from 'lodash';
 
@@ -22,11 +23,10 @@ export class BlogService {
     });
   }
 
-  loadFilteredBlog(filter): any {
-    return this.store.select('blog').map(blogs => {
-      blogs = filter === 'All' ? blogs.blogs : _.filter(blogs.blogs, b => b.author === filter);
-      return blogs;
-    });
+  loadFilteredBlog(filter): Observable<Blog[]> {
+    return this.store.select(rootSelector.getBlogs).map(blogs =>
+      filter === 'All' ? blogs : blogs.filter(blog => blog.author === filter)
+    );
   }
 
   addBlog(blog) {

@@ -21,7 +21,7 @@ export class AuthorSectionComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.authorService.loadAllAuthors();
-    this.authors$ = this.store.select('author');
+    this.authors$ = this.store.select('authors');
   }
 
   ngOnChanges() {

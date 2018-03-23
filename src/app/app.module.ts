@@ -34,7 +34,7 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     HttpClientModule,
     FormsModule,
     CoreModule,
-    StoreModule.forRoot({ blog: blogReducer, author: authorReducer }),
+    StoreModule.forRoot({ blogs: blogReducer, authors: authorReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
   providers: [],

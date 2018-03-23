@@ -1,6 +1,6 @@
-import { Blog } from '../../shared/models/blog.model';
 import * as blogActions from '../actions/blog.actions';
 import * as _ from 'lodash';
+import { Blog } from '../../shared/models/blog.model';
 
 export interface State {
   blogs: Blog[];
@@ -10,7 +10,7 @@ const initialState: State = {
   blogs: []
 };
 
-export const blogReducer = (state = initialState, action: blogActions.Actions) => {
+export const blogReducer = (state = initialState, action: blogActions.Actions): State => {
   switch (action.type) {
     case blogActions.LOAD_BLOGS:
         return Object.assign({}, state, {
@@ -30,3 +30,4 @@ export const blogReducer = (state = initialState, action: blogActions.Actions) =
 
 // slices of state
 export const getBlogs = (state: State) => state.blogs;
+
