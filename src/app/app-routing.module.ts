@@ -8,7 +8,9 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: 'home', component: HomeComponent },];
+  { path: 'home', component: HomeComponent },
+  { path: 'readers', loadChildren: 'app/readers/readers.module#ReadersModule' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
