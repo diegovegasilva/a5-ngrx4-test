@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { AuthorService } from '../core/services/author.service';
 import { Store } from '@ngrx/store';
+import * as rootSelector from '../state/main.reducer';
 
 @Component({
   selector: 'author-section',
@@ -21,7 +22,7 @@ export class AuthorSectionComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.authorService.loadAllAuthors();
-    this.authors$ = this.store.select('authors');
+    this.authors$ = this.store.select(rootSelector.getAuthors);
   }
 
   ngOnChanges() {

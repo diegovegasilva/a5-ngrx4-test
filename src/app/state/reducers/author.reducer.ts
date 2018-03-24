@@ -1,14 +1,27 @@
 import * as fromActions from '../actions/author.actions';
 import * as _ from 'lodash';
 
-export const authorReducer = (
-  state: any = [],
-  action: fromActions.Actions
-) => {
+import { Author } from '../../shared/models/author.model';
+
+export interface State {
+  authors: Author[];
+}
+
+const initialState: State = {
+  authors: []
+};
+
+
+export const authorReducer = (state: State = initialState, action: fromActions.Actions): State => {
   switch (action.type) {
-    case fromActions.ADD_AUTHOR:
-      return state.concat(action.payload);
+    case fromActions.LOAD_AUTHOR:
+      return Object.assign({}, state, {
+        authors: action.payload
+      });
     default:
       return state;
   }
 };
+
+// slices of state
+export const getAuthors = (state: State) => state.authors;

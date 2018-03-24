@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store';
 import { Author } from '../../shared/models/author.model';
 
-export const ADD_AUTHOR = '[AUTHOR] ADD';
+export const LOAD_AUTHOR = '[AUTHOR] LOAD';
 
-export class AddAuthor implements Action {
-  readonly type = ADD_AUTHOR;
+export class LoadAuthors implements Action {
+  readonly type = LOAD_AUTHOR;
   constructor(public payload: Author) {}
 }
 
-export type Actions = AddAuthor;
+export type Actions = LoadAuthors;
