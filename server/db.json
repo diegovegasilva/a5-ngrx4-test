@@ -44,5 +44,23 @@
     {
       "name": "Jane"
     }
+  ],
+  "readers": [
+    {
+      "name": "Connor",
+      "age" : 29
+    },
+    {
+      "name": "Sally",
+      "age" : 32
+    },
+    {
+      "name": "Jim",
+      "age" : 19
+    },
+    {
+      "name": "Ellen",
+      "age" : 26
+    }
   ]
 }
