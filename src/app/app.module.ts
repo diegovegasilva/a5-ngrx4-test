@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { rootReducers } from './state/main.reducer';
+import { rootReducers, metaReducers } from './state/main.reducer';
 import { blogReducer } from './state/reducers/blog.reducer';
 import { authorReducer } from './state/reducers/author.reducer';
 
@@ -35,7 +35,7 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     HttpClientModule,
     FormsModule,
     CoreModule,
-    StoreModule.forRoot(rootReducers),
+    StoreModule.forRoot(rootReducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
   providers: [],
