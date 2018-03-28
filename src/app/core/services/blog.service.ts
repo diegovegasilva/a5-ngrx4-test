@@ -18,9 +18,11 @@ export class BlogService {
   constructor(private http: HttpClient, private store: Store<any>) {}
 
   loadBlogs() {
-    return this.http.get(this._baseUrl + 'blogs').subscribe((res: Blog[]) => {
-      this.store.dispatch(new blogActions.LoadBlogs(res));
-    });
+    this.store.dispatch(new blogActions.LoadBlogs());
+  }
+
+  getBlogs() {
+    return this.http.get(this._baseUrl + 'blogs');
   }
 
   loadFilteredBlog(filter): Observable<Blog[]> {

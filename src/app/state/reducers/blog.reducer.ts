@@ -12,7 +12,7 @@ const initialState: State = {
 
 export const blogReducer = (state = initialState, action: blogActions.Actions): State => {
   switch (action.type) {
-    case blogActions.LOAD_BLOGS:
+    case blogActions.STORE_BLOGS:
         return Object.assign({}, state, {
           blogs: action.payload
         });

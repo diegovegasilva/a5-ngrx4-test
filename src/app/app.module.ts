@@ -5,9 +5,11 @@ import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { rootReducers, metaReducers } from './state/main.reducer';
 import { blogReducer } from './state/reducers/blog.reducer';
 import { authorReducer } from './state/reducers/author.reducer';
+import { BlogEffects } from './state/effects/blog.effects';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -36,7 +38,8 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     FormsModule,
     CoreModule,
     StoreModule.forRoot(rootReducers, {metaReducers}),
-    StoreDevtoolsModule.instrument({ maxAge: 25 })
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    EffectsModule.forRoot([BlogEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
