@@ -32,11 +32,16 @@ export class BlogService {
   }
 
   addBlog(blog) {
+    console.log('addBlog service', blog);
     return this.http
-      .post<any>(this._baseUrl + 'blogs', blog)
-      .subscribe((res: Blog) => {
-        this.store.dispatch(new blogActions.AddBlog(res));
-      });
+      .post<any>(this._baseUrl + 'blogs', blog);
+/*       .subscribe((res: Blog) => {
+        this.store.dispatch(new blogActions.StoreBlog(res));
+      }); */
+  }
+
+  loadBlog(blog) {
+    this.store.dispatch(new blogActions.LoadBlog(blog));
   }
 
   deleteBlog(blog) {

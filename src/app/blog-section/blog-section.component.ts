@@ -14,7 +14,7 @@ import { BlogService } from '../core/services/blog.service';
 import { Blog } from '../shared/models/blog.model';
 
 import { Store } from '@ngrx/store';
-import { ADD_BLOG, DELETE_BLOG } from '../state/actions/blog.actions';
+import { STORE_BLOG, DELETE_BLOG } from '../state/actions/blog.actions';
 
 @Component({
   selector: 'blog-section',
@@ -39,7 +39,7 @@ export class BlogSectionComponent implements OnInit, OnChanges {
 
   addBlog(blog: Blog) {
     blog.author = this.filter;
-    this.blogService.addBlog(blog);
+    this.blogService.loadBlog(blog);
   }
 
   deleteBlog(blog: Blog) {

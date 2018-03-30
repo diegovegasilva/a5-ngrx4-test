@@ -16,7 +16,7 @@ export const blogReducer = (state = initialState, action: blogActions.Actions): 
         return Object.assign({}, state, {
           blogs: action.payload
         });
-    case blogActions.ADD_BLOG:
+    case blogActions.STORE_BLOG:
         return Object.assign({}, state, {
           blogs: [...state.blogs, action.payload]
         });
