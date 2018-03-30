@@ -5,10 +5,12 @@ import { Author } from '../../shared/models/author.model';
 
 export interface State {
   authors: Author[];
+  selected: Author;
 }
 
 const initialState: State = {
-  authors: []
+  authors: [],
+  selected: undefined
 };
 
 
@@ -18,6 +20,10 @@ export const authorReducer = (state: State = initialState, action: fromActions.A
       return Object.assign({}, state, {
         authors: action.payload
       });
+    case fromActions.SELECT_AUTHOR:
+      return Object.assign({}, state, {
+        selected: action.payload
+      });
     default:
       return state;
   }
@@ -25,3 +31,4 @@ export const authorReducer = (state: State = initialState, action: fromActions.A
 
 // slices of state
 export const getAuthors = (state: State) => state.authors;
+export const getSelectedAuthor = (state: State) => state.selected;

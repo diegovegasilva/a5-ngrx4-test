@@ -22,7 +22,7 @@ import { STORE_BLOG, DELETE_BLOG } from '../state/actions/blog.actions';
   styleUrls: ['./blog-section.component.css']
 })
 export class BlogSectionComponent implements OnInit, OnChanges {
-  @Input() filter = 'All';
+  @Input() filter;
 
   blogs$;
 
@@ -33,12 +33,12 @@ export class BlogSectionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.blogs$ = this.blogService.loadFilteredBlog(this.filter);
+    this.blogs$ = this.blogService.loadFilteredBlog(this.filter.name);
     console.log('blog section Onchanges');
   }
 
   addBlog(blog: Blog) {
-    blog.author = this.filter;
+    blog.author = this.filter.name;
     this.blogService.loadBlog(blog);
   }
 

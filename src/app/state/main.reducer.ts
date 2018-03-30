@@ -36,4 +36,7 @@ export const getAuthorState = (state: State) => state.authors;
 
 // blog selector
 export const getBlogs = createSelector(getBlogState, fromBlogs.getBlogs);
-export const getAuthors = createSelector(getAuthorState,fromAuthors.getAuthors);
+export const getAuthors = createSelector(getAuthorState, fromAuthors.getAuthors);
+
+// author selector
+export const getSelectedAuthor = createSelector(getAuthorState, fromAuthors.getSelectedAuthor);

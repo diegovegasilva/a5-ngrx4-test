@@ -17,4 +17,8 @@ export class AuthorService {
       this.store.dispatch(new authorActions.LoadAuthors(res));
     });
   }
+
+  selectAuthor(author) {
+    this.store.dispatch(new authorActions.SelectAuthor(author));
+  }
 }
