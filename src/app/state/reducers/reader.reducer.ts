@@ -14,7 +14,7 @@ const initialState: State = {
 
 export const readerReducer = (state: State = initialState, action: fromActions.Actions): State => {
   switch (action.type) {
-    case fromActions.LOAD_READER:
+    case fromActions.STORE_READERS:
       return Object.assign({}, state, {
         readers: action.payload
       });

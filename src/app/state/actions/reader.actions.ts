@@ -1,11 +1,17 @@
 import { Action } from '@ngrx/store';
 import { Reader } from '../../shared/models/reader.model';
 
-export const LOAD_READER = '[READER] LOAD';
+export const LOAD_READERS = '[READER] LOAD ALL';
+export const STORE_READERS = '[READER] STORE_ALL';
 
 export class LoadReaders implements Action {
-  readonly type = LOAD_READER;
-  constructor(public payload: Reader) {}
+  readonly type = LOAD_READERS;
+  constructor() {}
 }
 
-export type Actions = LoadReaders;
+export class StoreReaders implements Action {
+  readonly type = STORE_READERS;
+  constructor(public payload: Reader[]) {}
+}
+
+export type Actions = LoadReaders | StoreReaders;

@@ -11,6 +11,10 @@ export class ReaderService {
 
   constructor(private http: HttpClient, private store: Store<any>) { }
 
+  getReaders() {
+    return this.http.get(this._baseUrl + 'readers');
+  }
+
   loadReaders() {
     return this.http.get(this._baseUrl + 'readers');
   }
