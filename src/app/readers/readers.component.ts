@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReaderService } from '../core/services/reader.service';
 import { Observable } from 'rxjs/Observable';
+
+import { Store } from '@ngrx/store';
+import * as readerSelector from './state/';
 import { Reader } from '../shared/models/reader.model';
 
 @Component({
@@ -11,13 +14,10 @@ import { Reader } from '../shared/models/reader.model';
 export class ReadersComponent implements OnInit {
   readers$;
 
-  constructor(private readersService: ReaderService) {}
+  constructor(private readersService: ReaderService, private store: Store<any>) {}
 
   ngOnInit() {
-    this.getReaders();
-  }
-
-  getReaders() {
-    this.readers$ = this.readersService.loadReaders();
+    this.readersService.loadReaders();
+    this.readers$ = this.store.select(readerSelector.selectReaders);
   }
 }

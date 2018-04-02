@@ -10,7 +10,7 @@ import * as readerActions from '../../state/actions/reader.actions';
 import { Reader } from '../../shared/models/reader.model';
 
 @Injectable()
-export class BlogEffects {
+export class ReaderEffects {
   constructor(private actions$: Actions, private readerService: ReaderService) {}
 
   @Effect()

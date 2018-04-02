@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 import { Reader } from '../../shared/models/reader.model';
+import * as readerActions from '../../state/actions/reader.actions';
 
 @Injectable()
 export class ReaderService {
@@ -16,7 +17,7 @@ export class ReaderService {
   }
 
   loadReaders() {
-    return this.http.get(this._baseUrl + 'readers');
+    this.store.dispatch(new readerActions.LoadReaders());
   }
 
 }
