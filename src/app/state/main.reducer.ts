@@ -4,11 +4,12 @@ import { ActionReducerMap, ActionReducer, createSelector, combineReducers, creat
 import * as fromRouter from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { environment } from '../../environments/environment';
+import { RouterStateUrl } from './router.serializer';
 
 export interface State {
   blogs: fromBlogs.State;
   authors: fromAuthors.State;
-  router: fromRouter.RouterReducerState;
+  router: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
 
@@ -28,7 +29,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? [logger/* , storeFreeze */]
+  ? [logger, storeFreeze]
   : [];
 
 // extract state slices

@@ -4,13 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { rootReducers, metaReducers } from './state/main.reducer';
 import { blogReducer } from './state/reducers/blog.reducer';
 import { authorReducer } from './state/reducers/author.reducer';
 import { BlogEffects } from './state/effects/blog.effects';
+import { CustomSerializer } from './state/router.serializer';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -45,7 +46,9 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     EffectsModule.forRoot([BlogEffects]),
   ],
-  providers: [],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
