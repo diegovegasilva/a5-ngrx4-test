@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { rootReducers, metaReducers } from './state/main.reducer';
@@ -38,6 +39,9 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     FormsModule,
     CoreModule,
     StoreModule.forRoot(rootReducers, {metaReducers}),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router' // name of reducer key
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     EffectsModule.forRoot([BlogEffects]),
   ],

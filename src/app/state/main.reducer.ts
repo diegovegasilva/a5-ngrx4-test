@@ -1,18 +1,21 @@
 import * as fromBlogs from './reducers/blog.reducer';
 import * as fromAuthors from './reducers/author.reducer';
 import { ActionReducerMap, ActionReducer, createSelector, combineReducers, createFeatureSelector, MetaReducer } from '@ngrx/store';
+import * as fromRouter from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { environment } from '../../environments/environment';
 
 export interface State {
   blogs: fromBlogs.State;
   authors: fromAuthors.State;
+  router: fromRouter.RouterReducerState;
 }
 
 
 export const rootReducers: ActionReducerMap<State> = {
   blogs: fromBlogs.blogReducer,
-  authors: fromAuthors.authorReducer
+  authors: fromAuthors.authorReducer,
+  router: fromRouter.routerReducer
 };
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
@@ -25,7 +28,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? [logger, storeFreeze]
+  ? [logger/* , storeFreeze */]
   : [];
 
 // extract state slices
